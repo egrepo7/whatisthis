@@ -1,0 +1,46 @@
+<div ng-controller='dashboardsController as DC'>
+  <h1>Bucket List</h1>
+    <p>
+      <a href="#/dashboard">Home</a>
+      <p class='link' ng-click='DC.logout()'>
+          Logout
+    </p>
+  </p>
+  <h2>Welcome, {{ DC.user.name}}!</h2>
+  <p>
+    <div ng-messages='addlist.name.$error'>
+      <p ng-message='minlength'>The title must be 5 characters long</p>
+      <p ng-message='minlength2'>The description must be at least 10 characters long</p>
+    </div>
+    <div name='addlist'>
+      <input type="text" placeholder="Title" ng-model='DC.newList.title' ng-minlength='5'>
+      <input type="text" placeholder="Description" ng-model='DC.newList.description' ng-minlength2='10'>
+      <select ng-model='DC.newList._user'>
+        <option ng-repeat='person in DC.users' value='{{ person._id }}'>
+          {{ person.name }}
+        </option>
+      </select>
+      <button ng-click='DC.addToList()'>Add to List</button>
+    </div>
+  </p>
+
+  <p>
+    Before I die I want to...
+  </p>
+      <div ng-repeat='list in DC.lists'>
+      <p>
+        <input type="checkbox">  {{list.creator}} | {{ list.title }} - {{ list.description }} - {{ list.createdAt }}
+      </p>
+    </div>
+
+  <p>
+    List of other users (Click to view profile)
+  </p>
+  <li ng-repeat='person in DC.users'>
+    <ul>
+      <a href="#/user/{{ person._id }}">
+        {{ person.name }}
+        </a>
+    </ul>
+  </li>
+</div>

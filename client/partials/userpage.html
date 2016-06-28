@@ -1,0 +1,19 @@
+<div ng-controller='profileController as PC'>
+  <p>
+    <a href="#/dashboard">Home</a>
+    <p class='link' ng-click='PC.logout()'>
+        Logout
+  </p>
+  <h1 ng-repeat='user in PC.info'>
+    {{ user.name }}'s Bucket List
+  </h1>
+
+
+  <h4>Tagged In:</h4>
+    <div ng-repeat='list in PC.list'>
+      <p>
+        <input type="checkbox">  {{list.creator}} | {{ list.title }} - {{ list.description }} - {{ list.createdAt }}
+      </p>
+    </div>
+
+</div>
